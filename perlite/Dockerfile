@@ -1,7 +1,7 @@
 FROM php:fpm-alpine
 
 LABEL maintainer="sec77 https://github.com/secure-77/Perlite"
-
+RUN deluser www-data && adduser -u 101 -D www-data
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && install-php-extensions yaml

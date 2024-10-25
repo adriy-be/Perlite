@@ -11,10 +11,10 @@ services:
       - ./dav/public/:/mnt/webdrive:rshared
     healthcheck:
       test: test -f /mnt/webdrive/README.md
-      interval: 10s
-      timeout: 10s
+      interval: 5s
+      timeout: 2s
       retries: 6
-      start_period: 10s
+      start_period: 5s
     restart: unless-stopped
     devices:
       - "/dev/fuse:/dev/fuse"
@@ -44,7 +44,7 @@ services:
       - seccomp:unconfined
       - apparmor:unconfined
     volumes:
-      - ./dav/public:/var/www/perlite/public:ro
+      - ./dav/public:/var/www/perlite/public:rshared
     depends_on:
       webdav:
         condition: service_healthy
